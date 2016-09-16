@@ -16,10 +16,19 @@
 # defensive package loading in pure R
 # inspired by @wildoane
 
+is_github_package <- function (package_name, user_repo_pattern = "[^/]+/[^/]+") {
+  return (package_name %>% stringr::str_detect(., user_repo_pattern))
+}
+
 install_packages_if_necessary <- function (dependencies, installed_packages = utils::installed.packages()) {
   packages_to_install <- setdiff(dependencies, installed_packages)
   for (package in packages_to_install) {
-    install.packages(package, dependencies = TRUE)
+    if (is_github_package(package)) {
+      devtools::install_github(package)
+    }
+    else {
+      install.packages(package, dependencies = TRUE)
+    }
   }
 }
 
