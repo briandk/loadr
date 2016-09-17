@@ -16,8 +16,23 @@
 # defensive package loading in pure R
 # inspired by @wildoane
 
-is_github_package <- function (package_name, user_repo_pattern = "[^/]+/[^/]+") {
-  return (package_name %>% stringr::str_detect(., user_repo_pattern))
+is_github_package <- function (packages, user_repo_pattern = "[^/]+/[^/]+") {
+  return(stringr::str_detect(packages, user_repo_pattern))
+}
+
+resolve_package_name_for_loading <- function (package_names) {
+  sapply(
+    X = package_names,
+    FUN = function (package_name) {
+      if (is_github_package(package_name)) {
+        package_name %<>%
+          stringr::str_split(pattern = "/") %>%
+          `[[`(1) %>% # str_split returns a list of character vectors
+          `[`(2)      # the second element of the character vector is the repo name
+      }
+      return (package_name)
+    }
+  )
 }
 
 install_packages_if_necessary <- function (dependencies, installed_packages = utils::installed.packages()) {
@@ -35,7 +50,7 @@ install_packages_if_necessary <- function (dependencies, installed_packages = ut
 load_required_packages <- function (required_packages) {
   install_packages_if_necessary(required_packages)
   sapply( X = required_packages
-          , FUN = require
+          , FUN = library
           , warn.conflicts = TRUE
   )
 }
