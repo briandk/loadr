@@ -4,7 +4,6 @@ Title: Defensive Package Loading for R
 Version: 0.1.0
 Authors@R:
     person("Brian", "Danielak", email = "briandaniela.k+github@gmail.com", role = c("aut", "cre"))
-Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: Specify your requirements as a vector, optionally install anything
     you don't have, load everything you need. I wrote this package because sometimes
     checkpoint and packrat are burdensome when you're doing rapid development (or
