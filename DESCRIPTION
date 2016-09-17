@@ -1,9 +1,26 @@
 Package: loadr
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Defensive Package Loading for R
 Version: 0.1.0
-Author: Who wrote it
+Authors@R:
+    person("Brian", "Danielak", email = "briandaniela.k+github@gmail.com", role = c("aut", "cre"))
 Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Description: Specify your requirements as a vector, optionally install anything
+    you don't have, load everything you need. I wrote this package because sometimes
+    checkpoint and packrat are burdensome when you're doing rapid development (or
+    rapid manuscript-writing). These functions ensure your scripts and documents
+    will run for anyone with R. You specify all the requirements of your package
+    neatly in a character vector, and loadr installs and loads those dependencies
+    for anyone who runs your code.
+License: MIT + file LICENSE
+URL: https://github.com/briandk/loadr
+BugReports: https://github.com/briandk/loadr/issues
 LazyData: TRUE
+Imports:
+    devtools,
+    magrittr,
+    stringr,
+    utils
+Suggests:
+    testthat
+RoxygenNote: 5.0.1
