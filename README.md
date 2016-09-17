@@ -24,7 +24,7 @@ packages_my_code_needs <- c(
   "ggplot2",
   "tidyr",
   "hadley/devtools" # you can specify user/repo combinations for github packages
-  )
+)
 
 # Automatically installs packages you don't have
 #   and automatically loads everything via `require()`
