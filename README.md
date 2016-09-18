@@ -28,7 +28,7 @@ packages_my_code_needs <- c(
 
 # Automatically installs packages you don't have
 #   and automatically loads everything via `require()`
-load_required_packages(packages_my_code_needs)
+loadr::load_required_packages(packages_my_code_needs)
 ```
 
 ## Why would I use this?
